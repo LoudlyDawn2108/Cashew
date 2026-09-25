@@ -10,44 +10,70 @@
 - **Đơn vị thực hiện**: **Nhóm 11**
 - **Repository**: [https://github.com/LoudlyDawn2108/Cashew](https://github.com/LoudlyDawn2108/Cashew)
 
-### 2. Các điểm tùy biến & tính năng đã thực hiện
-1. **Cá nhân hóa theo Nhóm 11**:
-   - Tên ứng dụng đổi thành `Cashew - Nhóm 11`.
-   - Ngôn ngữ mặc định: Tiếng Việt (`vi`).
-   - Tên người dùng mặc định trên trang chủ: `Nhóm 11`.
-   - Bổ sung khối thông tin giới thiệu dự án và nhóm thực hiện tại trang `About / Giới thiệu`.
-2. **Tích hợp & Ưu tiên đơn vị tiền tệ VNĐ (₫)**:
-   - Đưa đơn vị tiền tệ `VND` (`₫`) lên vị trí đầu tiên trong danh mục tiền tệ phổ biến.
-   - Thiết lập số thập phân mặc định cho VNĐ bằng `0` (₫75,000 thay vì ₫75,000.00).
-   - Thiết lập tài khoản ngân hàng mặc định khi tạo mới sử dụng `VND`.
-3. **Sửa đổi và tương thích môi trường**:
-   - Nâng cấp các thư viện phụ thuộc (`carousel_slider`, `home_widget`, `intl`) tương thích với Flutter 3.24.5 / Web.
-   - Thêm script máy chủ HTTP chuẩn (`serve.py`) hỗ trợ COOP/COEP headers phục vụ WebAssembly/CanvasKit.
+---
 
-### 3. Hướng dẫn khởi chạy trên Web (Local)
+### 2. Danh mục các file mã nguồn đã chỉnh sửa (Chi tiết)
+
+| File mã nguồn | Nội dung chỉnh sửa | Mục đích |
+| :--- | :--- | :--- |
+| [`budget/lib/struct/languageMap.dart`](budget/lib/struct/languageMap.dart) | Đổi `globalAppName = "Cashew - Nhóm 11"`, cấu hình `supportedLocales` ưu tiên `vi`, `startLocale = Locale("vi")`. | Cá nhân hóa tên ứng dụng và hiển thị Tiếng Việt mặc định. |
+| [`budget/lib/main.dart`](budget/lib/main.dart) | Cập nhật `title: 'Cashew - Nhóm 11'`, loại bỏ wrapper `DevicePreview` gây xung đột web. | Đồng bộ tiêu đề ứng dụng và tối ưu chạy toàn màn hình trên Web. |
+| [`budget/lib/struct/defaultPreferences.dart`](budget/lib/struct/defaultPreferences.dart) | Đặt giá trị mặc định `"username": "Nhóm 11"`, `"locale": "vi"`, `"hasOnboarded": true`. | Hiển thị lời chào "Xin chào Nhóm 11" ngay khi mở app lần đầu. |
+| [`budget/lib/pages/aboutPage.dart`](budget/lib/pages/aboutPage.dart) | Thêm khối UI nổi bật: **"Dự án Quản lý Chi tiêu - Nhóm 11"**, **"Thực hiện bởi: NHÓM 11"**, **"Ứng dụng Quản lý Chi tiêu Cá nhân (VNĐ)"**. | Minh chứng bản quyền thực hiện của Nhóm 11 trong trang Giới thiệu. |
+| [`budget/lib/functions.dart`](budget/lib/functions.dart) | Đưa `'vnd'` lên đầu danh sách `popularCurrencies`, sửa `getDevicesDefaultCurrencyCode()` trả về `'vnd'`. | Tích hợp và ưu tiên đơn vị tiền tệ Việt Nam Đồng (VNĐ - ₫). |
+| [`budget/lib/database/initializeDefaultDatabase.dart`](budget/lib/database/initializeDefaultDatabase.dart) | Đặt tài khoản ngân hàng mặc định ban đầu (`defaultWallet`) dùng `currency: 'vnd'` và `decimals: 0`. | Tự động tạo ví tiền tệ VNĐ không có số thập phân lẻ (`₫0` thay vì `₫0.00`). |
+| [`budget/lib/pages/addWalletPage.dart`](budget/lib/pages/addWalletPage.dart) | Thiết lập `selectedDecimals = 0` khi người dùng chọn loại tiền tệ là `vnd`. | Đảm bảo các ví tiền tệ VNĐ mới tạo luôn chuẩn format 0 số thập phân. |
+| [`budget/web/index.html`](budget/web/index.html) | Đổi thẻ `<title>` thành `Cashew - Nhóm 11`, cập nhật thẻ meta `apple-mobile-web-app-title`. | Hiển thị tên nhóm trên tab trình duyệt web. |
+| [`budget/web/manifest.json`](budget/web/manifest.json) | Đổi `"name"` và `"short_name"` thành `Cashew - Nhóm 11`. | Định danh PWA Web của nhóm. |
+| [`budget/pubspec.yaml`](budget/pubspec.yaml) | Nâng cấp `carousel_slider: ^5.0.0`, `home_widget: ^0.7.0`, `intl: ^0.19.0`, gỡ `device_preview`. | Tương thích môi trường Flutter 3.24.5 / Web. |
+| [`packages/.../pubspec.yaml`](budget/packages/) | Nới rộng SDK constraint `<4.0.0` cho `sliding_sheet` và `implicitly_animated_reorderable_list`. | Khắc phục cảnh báo và lỗi biên dịch thư viện nội bộ. |
+| [`serve.py`](serve.py) | Tạo script máy chủ Python HTTP tùy chỉnh kèm header `Cross-Origin-Opener-Policy` và `Cross-Origin-Embedder-Policy`. | Phục vụ ứng dụng Web mượt mà, hỗ trợ WebAssembly và CanvasKit. |
+
+---
+
+### 3. Hướng dẫn khởi chạy ứng dụng
+
+#### 👉 Cách 1: Chạy trực tiếp chế độ Debug / Development (Hỗ trợ Hot Restart)
 ```bash
-# 1. Cài đặt các gói phụ thuộc
 cd budget
+# Cài đặt thư viện phụ thuộc
 flutter pub get
 
-# 2. Build ứng dụng Web
+# Khởi chạy trên trình duyệt Google Chrome
+flutter run -d chrome
+# Hoặc cố định cổng:
+flutter run -d chrome --web-port=8080
+```
+> Khi đang chạy, bạn có thể nhấn phím `r` trong terminal để Hot Restart ứng dụng ngay lập tức!
+
+#### 👉 Cách 2: Chạy bản Release tối ưu hóa tốc độ cao (Khuyên dùng)
+```bash
+# 1. Build bản Web Release
+cd budget
 flutter build web --release
 
-# 3. Khởi chạy máy chủ Web Local
+# 2. Khởi chạy máy chủ HTTP
 cd ..
 python3 serve.py 8088
-# Mở trình duyệt tại: http://localhost:8088/
+
+# 3. Mở trình duyệt truy cập:
+# http://localhost:8088/
 ```
 
-### 4. Minh chứng kết quả (Screenshots)
-Xem toàn bộ hình ảnh minh chứng kiểm thử tại thư mục [`screenshots/`](screenshots/):
-- **Trang chủ Nhóm 11**: `screenshots/01_home_screen.png`
-- **Thêm giao dịch chi phí**: `screenshots/02_add_transaction.png`, `screenshots/03_choose_category.png`
-- **Nhập số tiền VNĐ (₫75,000)**: `screenshots/04_enter_amount_vnd.png`
-- **Cập nhật số dư & Danh sách giao dịch**: `screenshots/05_home_with_balance.png`, `screenshots/06_transactions_list.png`
-- **Sửa giao dịch**: `screenshots/07_edit_transaction.png`, `screenshots/08_after_edit.png`
-- **Xóa giao dịch**: `screenshots/09_delete_dialog.png`, `screenshots/10_after_delete.png`, `screenshots/11_home_after_delete.png`
-- **Thông tin Nhóm 11 (About)**: `screenshots/12_about_screen.png`, `screenshots/13_about_team.png`
+---
+
+### 4. Minh chứng kết quả kiểm thử (Screenshots)
+Toàn bộ ảnh chụp màn hình kiểm thử đầy đủ các chức năng được lưu tại thư mục [`screenshots/`](screenshots/):
+
+| STT | Chức năng kiểm thử | File ảnh minh chứng |
+| :---: | :--- | :--- |
+| 1 | **Trang chủ & Nhận diện Nhóm 11** | [`screenshots/01_home_screen.png`](screenshots/01_home_screen.png) |
+| 2 | **Thêm chi tiêu mới** | [`screenshots/02_add_transaction.png`](screenshots/02_add_transaction.png), [`screenshots/03_choose_category.png`](screenshots/03_choose_category.png) |
+| 3 | **Nhập tiền tệ VNĐ (₫75,000)** | [`screenshots/04_enter_amount_vnd.png`](screenshots/04_enter_amount_vnd.png) |
+| 4 | **Cập nhật số dư & Danh sách giao dịch** | [`screenshots/05_home_with_balance.png`](screenshots/05_home_with_balance.png), [`screenshots/06_transactions_list.png`](screenshots/06_transactions_list.png) |
+| 5 | **Sửa giao dịch chi tiêu** | [`screenshots/07_edit_transaction.png`](screenshots/07_edit_transaction.png), [`screenshots/08_after_edit.png`](screenshots/08_after_edit.png) |
+| 6 | **Xóa giao dịch chi tiêu & reset số dư** | [`screenshots/09_delete_dialog.png`](screenshots/09_delete_dialog.png), [`screenshots/10_after_delete.png`](screenshots/10_after_delete.png), [`screenshots/11_home_after_delete.png`](screenshots/11_home_after_delete.png) |
+| 7 | **Trang Giới thiệu & Bản quyền Nhóm 11** | [`screenshots/12_about_screen.png`](screenshots/12_about_screen.png), [`screenshots/13_about_team.png`](screenshots/13_about_team.png) |
 
 ---
 
