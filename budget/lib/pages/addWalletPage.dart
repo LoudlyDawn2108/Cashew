@@ -64,7 +64,7 @@ class _AddWalletPageState extends State<AddWalletPage> {
   String? searchCurrency = "";
   String selectedCurrency =
       getDevicesDefaultCurrencyCode(); //if no currency selected use empty string
-  int selectedDecimals = 2;
+  late int selectedDecimals = selectedCurrency == 'vnd' ? 0 : 2;
   FocusNode _titleFocusNode = FocusNode();
 
   void setSelectedTitle(String title) {
@@ -84,6 +84,9 @@ class _AddWalletPageState extends State<AddWalletPage> {
   void setSelectedCurrency(String currencyKey) {
     setState(() {
       selectedCurrency = currencyKey;
+      if (widget.wallet == null && currencyKey == 'vnd') {
+        selectedDecimals = 0;
+      }
     });
     determineBottomButton();
     return;

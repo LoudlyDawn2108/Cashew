@@ -5,7 +5,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-String globalAppName = "Cashew";
+String globalAppName = "Cashew - Nhóm 11";
 
 Map<String, dynamic> languageNamesJSON = {};
 loadLanguageNamesJSON() async {
@@ -14,6 +14,7 @@ loadLanguageNamesJSON() async {
 }
 
 Map<String, Locale> supportedLocales = {
+  "vi": Locale("vi"),
   "en": Locale("en"),
   "fr": Locale("fr"),
   "es": Locale("es"),
@@ -29,7 +30,6 @@ Map<String, Locale> supportedLocales = {
   "ko": Locale("ko"),
   "tr": Locale("tr"),
   "it": Locale("it"),
-  "vi": Locale("vi"),
   "pl": Locale("pl"),
   "nl": Locale("nl"),
   "th": Locale("th"),
@@ -115,6 +115,7 @@ class InitializeLocalizations extends StatelessWidget {
       path: 'assets/translations/generated',
       useFallbackTranslations: true,
       fallbackLocale: supportedLocales.values.toList().first,
+      startLocale: Locale("vi"),
       child: child,
     );
   }

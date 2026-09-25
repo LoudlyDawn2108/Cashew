@@ -1187,6 +1187,7 @@ Future<bool> openUrl(String link) async {
 }
 
 List<String> popularCurrencies = [
+  'vnd', // Vietnamese Dong (Nhóm 11)
   'usd', // United States Dollar
   'eur', // Euro
   'jpy', // Japanese Yen
@@ -1205,21 +1206,7 @@ List<String> popularCurrencies = [
 ];
 
 String getDevicesDefaultCurrencyCode() {
-  try {
-    String? currentCountryCode =
-        WidgetsBinding.instance.platformDispatcher.locale.countryCode;
-    // print(currentCountryCode);
-    for (String currencyKey in currenciesJSON.keys) {
-      if (currenciesJSON[currencyKey] != null &&
-          currenciesJSON[currencyKey]["CountryCode"] != null &&
-          currenciesJSON[currencyKey]["CountryCode"] == currentCountryCode) {
-        return currencyKey;
-      }
-    }
-  } catch (e) {
-    print("Error getting default currency " + e.toString());
-  }
-  return popularCurrencies[0];
+  return 'vnd';
 }
 
 void copyToClipboard(String text,

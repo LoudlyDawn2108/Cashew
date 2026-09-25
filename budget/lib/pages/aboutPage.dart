@@ -100,6 +100,71 @@ class AboutPageState extends State<AboutPage> {
             const EdgeInsetsDirectional.symmetric(horizontal: 15, vertical: 7),
         child: Center(
           child: TextFont(
+            text: "Dự án Quản lý Chi tiêu - Nhóm 11",
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            textAlign: TextAlign.center,
+            maxLines: 5,
+          ),
+        ),
+      ),
+      Padding(
+        padding:
+            const EdgeInsetsDirectional.symmetric(horizontal: 15, vertical: 5),
+        child: Container(
+          decoration: BoxDecoration(
+            color: containerColor,
+            borderRadius: BorderRadius.circular(getPlatform() == PlatformOS.isIOS ? 10 : 15),
+            border: Border.all(
+              color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
+              width: 2,
+            ),
+          ),
+          child: Padding(
+            padding: const EdgeInsetsDirectional.symmetric(
+                horizontal: 15, vertical: 16),
+            child: Column(
+              children: [
+                TextFont(
+                  text: "Thực hiện bởi",
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                  textAlign: TextAlign.center,
+                  textColor: getColor(context, "textLight"),
+                ),
+                SizedBox(height: 5),
+                TextFont(
+                  text: "NHÓM 11",
+                  fontSize: 26,
+                  fontWeight: FontWeight.bold,
+                  textColor: Theme.of(context).colorScheme.primary,
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 6),
+                TextFont(
+                  text: "Ứng dụng Quản lý Chi tiêu Cá nhân (VNĐ)",
+                  fontSize: 15,
+                  textAlign: TextAlign.center,
+                  textColor: Theme.of(context).colorScheme.onPrimaryContainer,
+                ),
+                SizedBox(height: 4),
+                TextFont(
+                  text: "Phiên bản tùy biến - Tích hợp tiền tệ Việt Nam Đồng (VNĐ)",
+                  fontSize: 13,
+                  textAlign: TextAlign.center,
+                  textColor: getColor(context, "textLight"),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+      SizedBox(height: 15),
+      Padding(
+        padding:
+            const EdgeInsetsDirectional.symmetric(horizontal: 15, vertical: 7),
+        child: Center(
+          child: TextFont(
             text: "development-team".tr(),
             fontSize: 20,
             fontWeight: FontWeight.bold,

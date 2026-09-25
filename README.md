@@ -1,4 +1,57 @@
-<h1 align="center" style="font-size:28px; line-height:1"><b>Cashew</b></h1>
+<h1 align="center" style="font-size:28px; line-height:1"><b>Cashew - Nhóm 11</b></h1>
+<p align="center"><b>Dự án Quản lý Chi tiêu Cá nhân - Phiên bản Tùy biến Nhóm 11 (Tích hợp VNĐ)</b></p>
+
+---
+
+## 📌 Báo cáo thực hiện - Nhóm 11
+
+### 1. Thông tin dự án
+- **Đề tài**: Triển khai & Tùy biến ứng dụng Quản lý Chi tiêu từ mã nguồn mở Cashew
+- **Đơn vị thực hiện**: **Nhóm 11**
+- **Repository**: [https://github.com/LoudlyDawn2108/Cashew](https://github.com/LoudlyDawn2108/Cashew)
+
+### 2. Các điểm tùy biến & tính năng đã thực hiện
+1. **Cá nhân hóa theo Nhóm 11**:
+   - Tên ứng dụng đổi thành `Cashew - Nhóm 11`.
+   - Ngôn ngữ mặc định: Tiếng Việt (`vi`).
+   - Tên người dùng mặc định trên trang chủ: `Nhóm 11`.
+   - Bổ sung khối thông tin giới thiệu dự án và nhóm thực hiện tại trang `About / Giới thiệu`.
+2. **Tích hợp & Ưu tiên đơn vị tiền tệ VNĐ (₫)**:
+   - Đưa đơn vị tiền tệ `VND` (`₫`) lên vị trí đầu tiên trong danh mục tiền tệ phổ biến.
+   - Thiết lập số thập phân mặc định cho VNĐ bằng `0` (₫75,000 thay vì ₫75,000.00).
+   - Thiết lập tài khoản ngân hàng mặc định khi tạo mới sử dụng `VND`.
+3. **Sửa đổi và tương thích môi trường**:
+   - Nâng cấp các thư viện phụ thuộc (`carousel_slider`, `home_widget`, `intl`) tương thích với Flutter 3.24.5 / Web.
+   - Thêm script máy chủ HTTP chuẩn (`serve.py`) hỗ trợ COOP/COEP headers phục vụ WebAssembly/CanvasKit.
+
+### 3. Hướng dẫn khởi chạy trên Web (Local)
+```bash
+# 1. Cài đặt các gói phụ thuộc
+cd budget
+flutter pub get
+
+# 2. Build ứng dụng Web
+flutter build web --release
+
+# 3. Khởi chạy máy chủ Web Local
+cd ..
+python3 serve.py 8088
+# Mở trình duyệt tại: http://localhost:8088/
+```
+
+### 4. Minh chứng kết quả (Screenshots)
+Xem toàn bộ hình ảnh minh chứng kiểm thử tại thư mục [`screenshots/`](screenshots/):
+- **Trang chủ Nhóm 11**: `screenshots/01_home_screen.png`
+- **Thêm giao dịch chi phí**: `screenshots/02_add_transaction.png`, `screenshots/03_choose_category.png`
+- **Nhập số tiền VNĐ (₫75,000)**: `screenshots/04_enter_amount_vnd.png`
+- **Cập nhật số dư & Danh sách giao dịch**: `screenshots/05_home_with_balance.png`, `screenshots/06_transactions_list.png`
+- **Sửa giao dịch**: `screenshots/07_edit_transaction.png`, `screenshots/08_after_edit.png`
+- **Xóa giao dịch**: `screenshots/09_delete_dialog.png`, `screenshots/10_after_delete.png`, `screenshots/11_home_after_delete.png`
+- **Thông tin Nhóm 11 (About)**: `screenshots/12_about_screen.png`, `screenshots/13_about_team.png`
+
+---
+
+
 
 
 <div align="center">

@@ -120,8 +120,8 @@ Future<Map<String, dynamic>> getDefaultPreferences() async {
     "automaticallyPaySubscriptions": true,
     "markAsPaidOnOriginalDay": false,
     "batterySaver": false,
-    "username": "",
-    "hasOnboarded": false,
+    "username": "Nhóm 11",
+    "hasOnboarded": true,
     "restrictAmountOfInitiallyLoadedTransactions": false,
     "autoAddAssociatedTitles": true,
     "AutoTransactions-canReadEmails": false,
@@ -190,7 +190,7 @@ Future<Map<String, dynamic>> getDefaultPreferences() async {
     "iOSEmulate": false,
     "iOSAnimatedGoo": false,
     "expandedNavigationSidebar": true,
-    "locale": "System", // the locale code or "System"
+    "locale": "vi", // default Vietnamese for Nhóm 11
     "firstDayOfWeek": -1, // -1: Locale/System, 0: Sunday, 1: Monday,
     "disableShadows": false,
     "showBillSplitterShortcut": false,
